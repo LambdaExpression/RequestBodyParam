@@ -20,11 +20,15 @@ import java.util.Map;
 public class TestController {
 
     @PostMapping(value = "test1", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Object test1(@RequestBodyParam Integer value1, @RequestBodyParam String value2, @RequestBodyParam Value3 value3) {
+    public Object test1(@RequestBodyParam(name = "value1", required = false) Integer v1
+            , @RequestBodyParam(required = false) String value2
+            , @RequestBodyParam(required = false) Value3 value3
+            , @RequestBodyParam(required = false) String[] value5) {
         Map<String, Object> date = new HashMap<>(4);
-        date.put("value1", value1);
+        date.put("value1", v1);
         date.put("value2", value2);
         date.put("value3", value3);
+        date.put("value5", value5);
         return date;
     }
 
