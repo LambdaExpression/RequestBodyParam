@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2018/11/9
  */
 @Component
-public class ExpandMvcConfigurer  extends WebMvcConfigurerAdapter {
+public class ExpandMvcConfigurer extends WebMvcConfigurerAdapter {
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {

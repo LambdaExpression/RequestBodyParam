@@ -18,8 +18,8 @@ import java.util.Properties;
  * @date 2018/11/9
  */
 @Component("springBeanUtil")
-public class SpringBeanUtil implements ApplicationContextAware {
-    private static Logger logger = LoggerFactory.getLogger(SpringBeanUtil.class);
+public class SpringBeanUtils implements ApplicationContextAware {
+    private static Logger logger = LoggerFactory.getLogger(SpringBeanUtils.class);
 
     private static ApplicationContext ctx = null;
 
@@ -27,7 +27,7 @@ public class SpringBeanUtil implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext ctx) throws BeansException {
-        SpringBeanUtil.ctx = ctx;
+        SpringBeanUtils.ctx = ctx;
     }
 
     public static ApplicationContext getApplicationContext() {

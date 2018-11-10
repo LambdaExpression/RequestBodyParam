@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import java.lang.annotation.*;
 
 /**
+ * 启动 RequestBodyParam 标签
+ *
  * @author lin
  * @date 2018/11/9
  */
@@ -13,6 +15,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Documented
 @Configuration
-@ComponentScan("org.tcat.expand.parent.config.ExpandMvcConfigurer")
+@ComponentScan(basePackages = {"org.tcat.expand.parent"})
 public @interface EnableRequestBodyParam {
 }

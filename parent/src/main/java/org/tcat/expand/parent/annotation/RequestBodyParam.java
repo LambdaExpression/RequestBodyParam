@@ -6,6 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * Body 参数 标签
+ *
  * @author lin
  * @date 2018/11/8
  */

@@ -17,6 +17,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
+ * RequestBodyParam 参数解析器
+ *
  * @author lin
  * @date 2018/11/8
  */
