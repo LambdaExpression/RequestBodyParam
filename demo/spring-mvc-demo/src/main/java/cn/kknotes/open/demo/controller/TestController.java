@@ -2,9 +2,8 @@ package cn.kknotes.open.demo.controller;
 
 import cn.kknotes.open.annotation.RequestBodyParam;
 import cn.kknotes.open.demo.controller.vo.Value3;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,11 +12,12 @@ import java.util.Map;
  * @author lin
  * @date 2018/11/9
  */
-@RestController
+@Controller
 @RequestMapping
 public class TestController {
 
-    @RequestMapping(value = "test1", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "test1", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
+    @ResponseBody
     public Object test1(@RequestBodyParam(name = "value1", required = false) Integer v1
             , @RequestBodyParam(required = false) String value2
             , @RequestBodyParam(required = false) Value3 value3
@@ -30,7 +30,8 @@ public class TestController {
         return date;
     }
 
-    @RequestMapping(value = "test2", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "test2", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
+    @ResponseBody
     public Object test2(@RequestBody Value3 value3) {
         return value3;
     }
