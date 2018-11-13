@@ -5,9 +5,7 @@
 
 RequestBodyParam 是为了解决使用 @RequestBody 时，必须定义 Dto （或 String 接收解析） 的问题，基于 RequestBody 的逻辑，写了 RequestBodyParam 以支持读取 body 下的参数
 
-[TOC]
-
-## 打包
+## I.打包
 
 先 git clone 项目，运行
 ```shell
@@ -15,7 +13,7 @@ mvn clean source:jar install
 
 ```
 
-## spring-boot 快速使用
+## II.spring-boot 快速使用
 
 #### 1.maven 引入jar包
 
@@ -77,7 +75,7 @@ public class TestController {
 ```
 
 
-## spring-mvc 快速使用
+## III.spring-mvc 快速使用
 
 #### 1.maven 引入jar包
 
@@ -162,5 +160,14 @@ public class TestController {
 {"value2":"test","value1":123}
 ```
 
+## IV.进阶使用
+
+@RequestBodyParam 提供额外的三个标签
+
+参数名|效果
+---|---
+value|别名
+name|同value，别名
+request|是否必须要 body param 参数。默认为 true ，参数为空时抛出异常；如果允许 body param 为空，请设置为 false
 
 
