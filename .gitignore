@@ -5,5 +5,3 @@ target/**
 **/*.iml
 **/.idea/**
 **/target/**
-hsqldb/**
-**/hsqldb/**
