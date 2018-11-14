@@ -19,12 +19,10 @@ public class TestController {
     @RequestMapping(value = "test1", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
     @ResponseBody
     public Object test1(@RequestBodyParam(name = "value1", required = false) Integer v1
-            , @RequestBodyParam(required = false) String value2
             , @RequestBodyParam(required = false) Value3 value3
             , @RequestBodyParam(required = false) String[] value5) {
         Map<String, Object> date = new HashMap<>(4);
         date.put("value1", v1);
-        date.put("value2", value2);
         date.put("value3", value3);
         date.put("value5", value5);
         return date;
