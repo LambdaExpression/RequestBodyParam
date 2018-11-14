@@ -31,7 +31,8 @@ public class RequestBodyParamConfigurer {
         return new MultiReadRequestBean() {
             @Override
             public boolean filter(ServletRequest request) {
-                //自定义条件
+                // Definition rule
+                // 自定义条件
                 return true;
             }
         };
