@@ -37,24 +37,15 @@ public class RequestBodyParamArgumentResolver implements HandlerMethodArgumentRe
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        // 判断是否 org.springframework.core.MethodParameter#nestedIfOptional() 方法是否存在
-        // 建议使用大于或等于 spring 4.3
-        if (hasNestedIfOptional) {
-            try {
-                parameter = parameter.nestedIfOptional();
-            } catch (NoSuchMethodError e) {
-                hasNestedIfOptional = false;
-                parameter = nested(parameter);
-            }
-        } else {
-            parameter = nested(parameter);
-        }
+
+        parameter = nestedIfOptional(parameter);
         RequestBodyParam requestBodyParam = parameter.getParameterAnnotation(RequestBodyParam.class);
         String json = ((ServletWebRequest) webRequest).getRequest().getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         Map<String, Object> data = JSON.parseObject(json, new TypeReference<Map<String, Object>>() {
         });
         String name = StringUtils.isEmpty(requestBodyParam.name()) ? parameter.getParameterName() : requestBodyParam.name();
         Object param = data.get(name);
+
         check(parameter, param, name, requestBodyParam);
         mavContainer.addAttribute(BindingResult.MODEL_KEY_PREFIX + name, param);
         if (param instanceof Map || param instanceof List) {
@@ -64,6 +55,20 @@ public class RequestBodyParamArgumentResolver implements HandlerMethodArgumentRe
         }
     }
 
+    private MethodParameter nestedIfOptional(MethodParameter parameter) {
+        // 判断是否 org.springframework.core.MethodParameter#nestedIfOptional() 方法是否存在
+        // 建议使用大于或等于 spring 4.3
+        if (hasNestedIfOptional) {
+            try {
+                return parameter.nestedIfOptional();
+            } catch (NoSuchMethodError e) {
+                hasNestedIfOptional = false;
+                return nested(parameter);
+            }
+        } else {
+            return nested(parameter);
+        }
+    }
 
     private MethodParameter nested(MethodParameter parameter) {
         parameter = new MethodParameter(parameter);
