@@ -3,9 +3,11 @@
 [![Build Status](https://travis-ci.com/LambdaExpression/RequestBodyParam.svg?branch=master)](https://travis-ci.com/LambdaExpression/RequestBodyParam)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e547270d7828998c6f38/maintainability)](https://codeclimate.com/github/LambdaExpression/RequestBodyParam/maintainability)
 
-[English](#imvn-package)
+[English](#english)
 
-[中文](#i打包)
+[中文](#中文)
+
+## English
 
 RequestBodyParam is to solve the problem of defining Dto (or String receiving parsing) when using @RequestBody. Based on the logic of RequestBody, RequestBodyParam is written to support reading the parameters under body.
 ## I.Mvn Package
@@ -188,6 +190,8 @@ request|whether the body param parameter is required. The default is true , an e
 
 
 --------------
+
+## 中文
 
 RequestBodyParam 是为了解决使用 @RequestBody 时，必须定义 Dto （或 String 接收解析） 的问题，基于 RequestBody 的逻辑，写了 RequestBodyParam 以支持读取 body 下的参数
 
