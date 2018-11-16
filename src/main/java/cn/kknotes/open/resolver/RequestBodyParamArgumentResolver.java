@@ -1,11 +1,9 @@
 package cn.kknotes.open.resolver;
 
 import cn.kknotes.open.annotation.RequestBodyParam;
+import cn.kknotes.open.exception.HttpMediaTypeOrHttpBodyException;
 import cn.kknotes.open.exception.MethodArgumentNotValidException;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.*;
 import org.springframework.core.MethodParameter;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -41,8 +39,13 @@ public class RequestBodyParamArgumentResolver implements HandlerMethodArgumentRe
         parameter = nestedIfOptional(parameter);
         RequestBodyParam requestBodyParam = parameter.getParameterAnnotation(RequestBodyParam.class);
         String json = ((ServletWebRequest) webRequest).getRequest().getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        Map<String, Object> data = JSON.parseObject(json, new TypeReference<Map<String, Object>>() {
-        });
+        Map<String, Object> data;
+        try {
+            data = JSON.parseObject(json, new TypeReference<Map<String, Object>>() {
+            });
+        } catch (JSONException e) {
+            throw new HttpMediaTypeOrHttpBodyException(parameter);
+        }
         String name = StringUtils.isEmpty(requestBodyParam.name()) ? parameter.getParameterName() : requestBodyParam.name();
         Object param = data.get(name);
 

@@ -25,8 +25,7 @@ public class MultiReadRequestFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        Map<String, MultiReadRequestBean> beans = SpringBeanUtils.getBeansOfType(MultiReadRequestBean.class);
-        if (useMultiRead(request,beans)) {
+        if (useMultiRead(request)) {
             MultiReadHttpServletRequest multiReadHttpServletRequest = new MultiReadHttpServletRequest((HttpServletRequest) request);
             chain.doFilter(multiReadHttpServletRequest, response);
         } else {
@@ -34,7 +33,8 @@ public class MultiReadRequestFilter extends GenericFilterBean {
         }
     }
 
-    private boolean useMultiRead(ServletRequest request,Map<String, MultiReadRequestBean> beans){
+    private boolean useMultiRead(ServletRequest request){
+        Map<String, MultiReadRequestBean> beans = SpringBeanUtils.getBeansOfType(MultiReadRequestBean.class);
         boolean use = !beans.isEmpty();
         for (String key : beans.keySet()) {
             // 没有定义其他 MultiReadRequestBean 时，使用默认 MultiReadRequestBean 配置
