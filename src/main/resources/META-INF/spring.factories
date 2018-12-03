@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.kknotes.open.config.MvcMultiReadRequestConfigurer,\
+  cn.kknotes.open.config.ExpandMvcConfigurer,\
+  cn.kknotes.open.filter.MultiReadRequestFilter,\
+  cn.kknotes.open.util.SpringBeanUtils
