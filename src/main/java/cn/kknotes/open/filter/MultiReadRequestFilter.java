@@ -1,12 +1,11 @@
 package cn.kknotes.open.filter;
 
-import cn.kknotes.open.bean.MultiReadRequestBean;
 import cn.kknotes.open.request.MultiReadHttpServletRequest;
 import cn.kknotes.open.util.SpringBeanUtils;
 import org.apache.commons.codec.binary.StringUtils;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
+import cn.kknotes.open.bean.MultiReadRequestBean;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,7 +21,6 @@ import java.util.Map;
  * @date 2018/11/9
  */
 @Component
-@ConditionalOnBean(MultiReadRequestBean.class)
 public class MultiReadRequestFilter extends GenericFilterBean {
 
     @Override

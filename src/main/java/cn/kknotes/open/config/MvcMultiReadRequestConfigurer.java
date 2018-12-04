@@ -1,14 +1,15 @@
 package cn.kknotes.open.config;
 
 import cn.kknotes.open.bean.DefaultMultiReadRequestBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import cn.kknotes.open.bean.MultiReadRequestBean;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 /**
  * 设置 MultiReadRequest 配置
@@ -16,8 +17,7 @@ import javax.servlet.ServletRequest;
  * @author lin
  * @date 2018/11/9
  */
-@Configuration
-@ConditionalOnBean(RequestBodyParamMarkerConfiguration.Marker.class)
+@Component
 public class MvcMultiReadRequestConfigurer {
 
     /**
