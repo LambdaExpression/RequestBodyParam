@@ -34,4 +34,10 @@ public class TestController {
         return value3;
     }
 
+    @RequestMapping()
+    @ResponseBody
+    public String index(){
+        return "index";
+    }
+
 }
