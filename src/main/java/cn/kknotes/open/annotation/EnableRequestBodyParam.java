@@ -1,7 +1,8 @@
 package cn.kknotes.open.annotation;
 
-import org.springframework.context.annotation.ComponentScan;
+import cn.kknotes.open.config.RequestBodyParamMarkerConfiguration;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
 
@@ -14,7 +15,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented
-@Configuration
-@ComponentScan(basePackages = {"cn.kknotes.open"})
+@Import(RequestBodyParamMarkerConfiguration.class)
 public @interface EnableRequestBodyParam {
 }
