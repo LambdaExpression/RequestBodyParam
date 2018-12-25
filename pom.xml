@@ -9,8 +9,28 @@
     <version>2.0.RELEASE</version>
     <packaging>jar</packaging>
 
-    <name>requestBodyParam</name>
+    <name>RequestBodyParam</name>
+    <description>Get Http Body Param</description>
     <url>https://github.com/LambdaExpression/RequestBodyParam</url>
+    <licenses>
+        <license>
+            <name>RequestBodyParam Licence</name>
+            <url>https://raw.githubusercontent.com/LambdaExpression/RequestBodyParam/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>lambdaexpression</id>
+            <name>Lin BingJun</name>
+            <email>lambdaexpression@163.com</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection>https://github.com/LambdaExpression/RequestBodyParam.git</connection>
+        <developerConnection>git@github.com:LambdaExpression/RequestBodyParam.git</developerConnection>
+        <url>https://github.com/LambdaExpression/RequestBodyParam.git</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
