@@ -31,9 +31,9 @@ If your application is build in maven, just add the following code in pom.xml.
     <dependencies>
         ...
         <dependency>
-            <groupId>cn.kknotes.open</groupId>
-            <artifactId>requestBodyParam</artifactId>
-            <version>1.0-SNAPSHOT</version>
+          <groupId>com.github.lambdaexpression</groupId>
+          <artifactId>request-body-param</artifactId>
+          <version>2.0.RELEASE</version>
         </dependency>
         ...
     </dependencies>
@@ -65,7 +65,7 @@ Controller param add @RequestBodyParam tag
 @RequestMapping
 public class TestController {
 
-    @PostMapping(value = "test1", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "test1", produces = MediaType.APPLICATION_JSON_VALUE)
     public Object test1(@RequestBodyParam Integer value1 , @RequestBodyParam String value2 ) {
         Map<String, Object> date = new HashMap<>(2);
         date.put("value1", v1);
@@ -80,7 +80,7 @@ public class TestController {
 run project
 
 ```shell
-[root@centos ~]# curl -H "Content-type:application/json;charset=UTF-8" -X POST -d '{"value1":123,"value2":"test"}' http://127.0.0.1:8080/test1
+[root@centos ~]# curl -H "Content-type:application/json" -X POST -d '{"value1":123,"value2":"test"}' http://127.0.0.1:8080/test1
 {"value2":"test","value1":123}
 ```
 
@@ -99,9 +99,9 @@ If your application is build in maven, just add the following code in pom.xml.
     <dependencies>
         ...
         <dependency>
-            <groupId>cn.kknotes.open</groupId>
-            <artifactId>requestBodyParam</artifactId>
-            <version>1.0-SNAPSHOT</version>
+          <groupId>com.github.lambdaexpression</groupId>
+          <artifactId>request-body-param</artifactId>
+          <version>2.0.RELEASE</version>
         </dependency>
         ...
     </dependencies>
@@ -109,55 +109,27 @@ If your application is build in maven, just add the following code in pom.xml.
 
 ```
 
-#### 2.Update web.xml
-
-add cn.kknotes.open.filter.MultiReadRequestFilter filter
-```xml
-
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:applicationContext*.xml</param-value>
-    </context-param>
-
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
-    <filter>
-        <filter-name>multiReadRequestFilter</filter-name>
-        <filter-class>cn.kknotes.open.filter.MultiReadRequestFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>multiReadRequestFilter</filter-name>
-        <url-pattern>*</url-pattern>
-    </filter-mapping>
-
-```
-
-#### 3.Update applicationContext.xml
+#### 2.Update SpringMVC-servlet.xml
 
 ```xml
 
-    <context:component-scan base-package="cn.kknotes.open"/>
-
-    <bean id="defaultMultiReadRequestBean" class="cn.kknotes.open.bean.DefaultMultiReadRequestBean">
-    </bean>
+    <bean class="com.github.lambdaexpression.config.RequestBodyParamConfigurer"/>
 
     <mvc:annotation-driven>
         <mvc:argument-resolvers>
-            <bean class="cn.kknotes.open.resolver.RequestBodyParamArgumentResolver"/>
+            <bean class="com.github.lambdaexpression.resolver.RequestBodyParamArgumentResolver"/>
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
 ```
 
-#### 4.Use On Controller
+#### 3.Use On Controller
        
 Controller param add @RequestBodyParam tag
 
 ```java
 
-    @RequestMapping(value = "test1", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
+    @RequestMapping(value = "test1", produces = "application/json",method = RequestMethod.POST)
     @ResponseBody
     public Object test1(@RequestBodyParam Integer value1 , @RequestBodyParam String value2 ) {
         Map<String, Object> date = new HashMap<>(4);
@@ -168,12 +140,12 @@ Controller param add @RequestBodyParam tag
 
 ```
 
-#### 5.Test
+#### 4.Test
 
 run project
 
 ```shell
-[root@centos ~]# curl -H "Content-type:application/json;charset=UTF-8" -X POST -d '{"value1":123,"value2":"test"}' http://127.0.0.1:8080/test1
+[root@centos ~]# curl -H "Content-type:application/json" -X POST -d '{"value1":123,"value2":"test"}' http://127.0.0.1:8080/test1
 {"value2":"test","value1":123}
 ```
 
@@ -216,9 +188,9 @@ mvn clean source:jar install
     <dependencies>
         ...
         <dependency>
-            <groupId>cn.kknotes.open</groupId>
-            <artifactId>requestBodyParam</artifactId>
-            <version>1.0-SNAPSHOT</version>
+          <groupId>com.github.lambdaexpression</groupId>
+          <artifactId>request-body-param</artifactId>
+          <version>2.0.RELEASE</version>
         </dependency>
         ...
     </dependencies>
@@ -249,7 +221,7 @@ public class RequestBodyParamConfigurer {
 @RequestMapping
 public class TestController {
 
-    @PostMapping(value = "test1", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "test1", produces = MediaType.APPLICATION_JSON_VALUE)
     public Object test1(@RequestBodyParam Integer value1 , @RequestBodyParam String value2 ) {
         Map<String, Object> date = new HashMap<>(2);
         date.put("value1", v1);
@@ -264,7 +236,7 @@ public class TestController {
 启动项目调用
 
 ```shell
-[root@centos ~]# curl -H "Content-type:application/json;charset=UTF-8" -X POST -d '{"value1":123,"value2":"test"}' http://127.0.0.1:8080/test1
+[root@centos ~]# curl -H "Content-type:application/json" -X POST -d '{"value1":123,"value2":"test"}' http://127.0.0.1:8080/test1
 {"value2":"test","value1":123}
 ```
 
@@ -278,9 +250,9 @@ public class TestController {
     <dependencies>
         ...
         <dependency>
-            <groupId>cn.kknotes.open</groupId>
-            <artifactId>requestBodyParam</artifactId>
-            <version>1.0-SNAPSHOT</version>
+          <groupId>com.github.lambdaexpression</groupId>
+          <artifactId>request-body-param</artifactId>
+          <version>2.0.RELEASE</version>
         </dependency>
         ...
     </dependencies>
@@ -288,54 +260,26 @@ public class TestController {
 
 ```
 
-#### 2.添加 web.xml 配置
-
-添加 cn.kknotes.open.filter.MultiReadRequestFilter 拦截器
-```xml
-
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:applicationContext*.xml</param-value>
-    </context-param>
-
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
-    <filter>
-        <filter-name>multiReadRequestFilter</filter-name>
-        <filter-class>cn.kknotes.open.filter.MultiReadRequestFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>multiReadRequestFilter</filter-name>
-        <url-pattern>*</url-pattern>
-    </filter-mapping>
-
-```
-
-#### 3.添加 applicationContext.xml 配置
+#### 2.添加 SpringMVC-servlet.xml 配置
 
 ```xml
 
-    <context:component-scan base-package="cn.kknotes.open"/>
-
-    <bean id="defaultMultiReadRequestBean" class="cn.kknotes.open.bean.DefaultMultiReadRequestBean">
-    </bean>
+    <bean class="com.github.lambdaexpression.config.RequestBodyParamConfigurer"/>
 
     <mvc:annotation-driven>
         <mvc:argument-resolvers>
-            <bean class="cn.kknotes.open.resolver.RequestBodyParamArgumentResolver"/>
+            <bean class="com.github.lambdaexpression.resolver.RequestBodyParamArgumentResolver"/>
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
 ```
 
-#### 4.Controller层使用
+#### 3.Controller层使用
 
 接口入参添加 @RequestBodyParam 标签
 ```java
 
-    @RequestMapping(value = "test1", produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
+    @RequestMapping(value = "test1", produces = "application/json",method = RequestMethod.POST)
     @ResponseBody
     public Object test1(@RequestBodyParam Integer value1 , @RequestBodyParam String value2 ) {
         Map<String, Object> date = new HashMap<>(4);
@@ -346,11 +290,11 @@ public class TestController {
 
 ```
 
-#### 5.调用
+#### 4.调用
 启动项目调用
 
 ```shell
-[root@centos ~]# curl -H "Content-type:application/json;charset=UTF-8" -X POST -d '{"value1":123,"value2":"test"}' http://127.0.0.1:8080/test1
+[root@centos ~]# curl -H "Content-type:application/json" -X POST -d '{"value1":123,"value2":"test"}' http://127.0.0.1:8080/test1
 {"value2":"test","value1":123}
 ```
 

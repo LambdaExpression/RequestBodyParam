@@ -4,12 +4,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>cn.kknotes.open</groupId>
-  <artifactId>demo</artifactId>
+  <groupId>com.github.lambdaexpression</groupId>
+  <artifactId>spring-mvc-demo</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>demo</name>
+  <name>spring-mvc-demo</name>
   <url>https://github.com/LambdaExpression/RequestBodyParam</url>
 
   <properties>
@@ -20,13 +20,14 @@
     <java.version>1.8</java.version>
 
     <springframework.version>4.2.1.RELEASE</springframework.version>
+    <request-body-param.version>2.0.RELEASE</request-body-param.version>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>cn.kknotes.open</groupId>
-      <artifactId>requestBodyParam</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <groupId>com.github.lambdaexpression</groupId>
+      <artifactId>request-body-param</artifactId>
+      <version>${request-body-param.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
