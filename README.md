@@ -10,15 +10,8 @@
 ## English
 
 RequestBodyParam is to solve the problem of defining Dto (or String receiving parsing) when using @RequestBody. Based on the logic of RequestBody, RequestBodyParam is written to support reading the parameters under body.
-## I.Mvn Package
 
-git clone code，run
-```shell
-mvn clean source:jar install
-
-```
-
-## II.Spring Boot Quick Start
+## I.Spring Boot Quick Start
 
 #### 1.Add Dependency
 
@@ -85,7 +78,7 @@ run project
 ```
 
 
-## III.Spring MVC Quick Start
+## II.Spring MVC Quick Start
 
 #### 1.maven Add Dependency
              
@@ -149,7 +142,7 @@ run project
 {"value2":"test","value1":123}
 ```
 
-## IV.Advanced
+## III.Advanced
 
 @RequestBodyParam(value="name",request=false) provide an additional three labels
 
@@ -167,15 +160,7 @@ request|whether the body param parameter is required. The default is true , an e
 
 RequestBodyParam 是为了解决使用 @RequestBody 时，必须定义 Dto （或 String 接收解析） 的问题，基于 RequestBody 的逻辑，写了 RequestBodyParam 以支持读取 body 下的参数
 
-## I.打包
-
-先 git clone 项目，运行
-```shell
-mvn clean source:jar install
-
-```
-
-## II.spring-boot 快速使用
+## I.spring-boot 快速使用
 
 #### 1.maven 引入jar包
 
@@ -241,7 +226,7 @@ public class TestController {
 ```
 
 
-## III.spring-mvc 快速使用
+## II.spring-mvc 快速使用
 
 #### 1.maven 引入jar包
 
@@ -298,7 +283,7 @@ public class TestController {
 {"value2":"test","value1":123}
 ```
 
-## IV.进阶使用
+## III.进阶使用
 
 @RequestBodyParam(value="name",request=false) 提供额外的三个标签
 
