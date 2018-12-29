@@ -20,7 +20,7 @@
     <java.version>1.8</java.version>
 
     <springframework.version>4.2.1.RELEASE</springframework.version>
-    <request-body-param.version>2.0.RELEASE</request-body-param.version>
+    <request-body-param.version>2.0.1.RELEASE</request-body-param.version>
   </properties>
 
   <dependencies>

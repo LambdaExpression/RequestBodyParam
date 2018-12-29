@@ -26,7 +26,7 @@ If your application is build in maven, just add the following code in pom.xml.
         <dependency>
           <groupId>com.github.lambdaexpression</groupId>
           <artifactId>request-body-param</artifactId>
-          <version>2.0.RELEASE</version>
+          <version>2.0.1.RELEASE</version>
         </dependency>
         ...
     </dependencies>
@@ -94,7 +94,7 @@ If your application is build in maven, just add the following code in pom.xml.
         <dependency>
           <groupId>com.github.lambdaexpression</groupId>
           <artifactId>request-body-param</artifactId>
-          <version>2.0.RELEASE</version>
+          <version>2.0.1.RELEASE</version>
         </dependency>
         ...
     </dependencies>
@@ -175,7 +175,7 @@ RequestBodyParam 是为了解决使用 @RequestBody 时，必须定义 Dto （�
         <dependency>
           <groupId>com.github.lambdaexpression</groupId>
           <artifactId>request-body-param</artifactId>
-          <version>2.0.RELEASE</version>
+          <version>2.0.1.RELEASE</version>
         </dependency>
         ...
     </dependencies>
@@ -237,7 +237,7 @@ public class TestController {
         <dependency>
           <groupId>com.github.lambdaexpression</groupId>
           <artifactId>request-body-param</artifactId>
-          <version>2.0.RELEASE</version>
+          <version>2.0.1.RELEASE</version>
         </dependency>
         ...
     </dependencies>
