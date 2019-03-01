@@ -19,7 +19,7 @@ public class DefaultMultiReadRequestBean implements MultiReadRequestBean {
     @Override
     public boolean filter(ServletRequest request) {
         return contains(request.getContentType(), MediaType.APPLICATION_JSON_VALUE)
-                && (Objects.equals(HttpMethod.POST.name(), ((HttpServletRequest) request).getMethod() ||
+                && (Objects.equals(HttpMethod.POST.name(), ((HttpServletRequest) request).getMethod()) ||
                     Objects.equals(HttpMethod.PUT.name(), ((HttpServletRequest) request).getMethod()));
     }
 
