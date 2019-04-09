@@ -17,7 +17,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequestBodyParam {
 
-
     /**
      * 别名为 {@link #name}.
      */
@@ -31,9 +30,9 @@ public @interface RequestBodyParam {
     String name() default "";
 
     /**
-     * 是否必须 body param 参数
-     * <p>默认为 {@code true} ，参数为空时抛出异常
-     * 如果允许 body param 为空，请设置为 {@code false}
+     * 是否是必要的 body param 参数
+     * <p>默认为 {@code true} ，参数为 NULL 时抛出异常
+     * 如果允许 body param 为 NULL，请设置为 {@code false}
      */
     boolean required() default true;
 

@@ -1,9 +1,9 @@
 package com.github.lambdaexpression.resolver;
 
+import com.alibaba.fastjson.*;
 import com.github.lambdaexpression.annotation.RequestBodyParam;
 import com.github.lambdaexpression.exception.HttpMediaTypeOrHttpBodyException;
 import com.github.lambdaexpression.exception.MethodArgumentNotValidException;
-import com.alibaba.fastjson.*;
 import org.springframework.core.MethodParameter;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -13,6 +13,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -39,12 +40,14 @@ public class RequestBodyParamArgumentResolver implements HandlerMethodArgumentRe
         parameter = nestedIfOptional(parameter);
         RequestBodyParam requestBodyParam = parameter.getParameterAnnotation(RequestBodyParam.class);
         String json = ((ServletWebRequest) webRequest).getRequest().getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        Map<String, Object> data;
-        try {
-            data = JSON.parseObject(json, new TypeReference<Map<String, Object>>() {
-            });
-        } catch (JSONException e) {
-            throw new HttpMediaTypeOrHttpBodyException(parameter);
+        Map<String, Object> data=new HashMap<>(4);
+        if(!StringUtils.isEmpty(json)){
+            try {
+                data = JSON.parseObject(json, new TypeReference<Map<String, Object>>() {
+                });
+            } catch (JSONException e) {
+                throw new HttpMediaTypeOrHttpBodyException(parameter, e);
+            }
         }
         String name = StringUtils.isEmpty(requestBodyParam.name()) ? parameter.getParameterName() : requestBodyParam.name();
         Object param = data.get(name);

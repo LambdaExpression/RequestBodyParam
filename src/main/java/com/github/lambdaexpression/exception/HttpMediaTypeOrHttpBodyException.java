@@ -9,6 +9,7 @@ import org.springframework.core.MethodParameter;
 public class HttpMediaTypeOrHttpBodyException extends Exception {
 
     private final MethodParameter parameter;
+    private Exception e;
 
 
     /**
@@ -16,8 +17,9 @@ public class HttpMediaTypeOrHttpBodyException extends Exception {
      *
      * @param parameter the parameter that failed validation
      */
-    public HttpMediaTypeOrHttpBodyException(MethodParameter parameter) {
+    public HttpMediaTypeOrHttpBodyException(MethodParameter parameter, Exception e) {
         this.parameter = parameter;
+        this.e = e;
     }
 
     /**
@@ -31,7 +33,10 @@ public class HttpMediaTypeOrHttpBodyException extends Exception {
     public String getMessage() {
         StringBuilder sb = new StringBuilder("Request method exception :")
                 .append(this.parameter.getMethod().toGenericString())
-                .append(", please check the cn.kknotes.open.bean.MultiReadRequestBean filter condition ( Default ContentType or HttpMethod ERROR ) ");
+                .append(", please check the cn.kknotes.open.bean.MultiReadRequestBean filter condition ( Default ContentType or HttpMethod ERROR ) \n")
+                .append(e.getClass())
+                .append(" : ")
+                .append(e.getMessage());
         return sb.toString();
     }
 
