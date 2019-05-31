@@ -144,6 +144,8 @@ run project
 
 ## III.Advanced
 
+### 1.RequestBodyParam Tag
+
 @RequestBodyParam(value="name",request=false) provide an additional three labels
 
 name|action
@@ -151,6 +153,43 @@ name|action
 value|alias
 name|same value, alias
 request|whether the body param parameter is required. The default is true , an exception is thrown when the argument is empty; set to false if body param is allowed to be empty
+
+### 2.MultiReadRequestBean
+
+Intercept rules for custom @RequestBodyParam by inheriting MultiReadRequestBean
+
+```
+@Component
+@EnableRequestBodyParam
+public class RequestBodyParamConfigurer {
+
+    /**
+     * Customize MultiReadHttpServletRequest
+     * <p>Use default MultiReadRequestBean when don't has Customize MultiReadRequestBean
+     *
+     * 自定义 MultiReadHttpServletRequest 的使用条件
+     * <p>没有定义 MultiReadRequestBean 时，会使用默认的 MultiReadRequestBean 条件
+     *
+     * @see cn.kknotes.open.bean.DefaultMultiReadRequestBean
+     * @param request
+     * @return
+     */
+    @Bean
+    public MultiReadRequestBean testMultiReadRequestBean(ServletRequest request) {
+        return new MultiReadRequestBean() {
+            @Override
+            public boolean filter(ServletRequest request) {
+                // Definition rule
+                // 自定义条件
+                return true;
+            }
+        };
+    }
+
+}
+```
+[demo](https://github.com/LambdaExpression/RequestBodyParam/blob/master/demo/spring-boot-demo/src/main/java/com/github/lambdaexpression/demo/config/RequestBodyParamConfigurer.java)
+
 
 
 
@@ -285,6 +324,8 @@ public class TestController {
 
 ## III.进阶使用
 
+### 1.RequestBodyParam 标签
+
 @RequestBodyParam(value="name",request=false) 提供额外的三个标签
 
 参数名|作用
@@ -294,3 +335,38 @@ name|同value，别名
 request|是否必须要 body param 参数。默认为 true ，参数为空时抛出异常；如果允许 body param 为空，请设置为 false
 
 
+### 2.MultiReadRequestBean
+
+通过继承 MultiReadRequestBean 自定义 @RequestBodyParam 的拦截规则
+
+```
+@Component
+@EnableRequestBodyParam
+public class RequestBodyParamConfigurer {
+
+    /**
+     * Customize MultiReadHttpServletRequest
+     * <p>Use default MultiReadRequestBean when don't has Customize MultiReadRequestBean
+     *
+     * 自定义 MultiReadHttpServletRequest 的使用条件
+     * <p>没有定义 MultiReadRequestBean 时，会使用默认的 MultiReadRequestBean 条件
+     *
+     * @see cn.kknotes.open.bean.DefaultMultiReadRequestBean
+     * @param request
+     * @return
+     */
+    @Bean
+    public MultiReadRequestBean testMultiReadRequestBean(ServletRequest request) {
+        return new MultiReadRequestBean() {
+            @Override
+            public boolean filter(ServletRequest request) {
+                // Definition rule
+                // 自定义条件
+                return true;
+            }
+        };
+    }
+
+}
+```
+[demo](https://github.com/LambdaExpression/RequestBodyParam/blob/master/demo/spring-boot-demo/src/main/java/com/github/lambdaexpression/demo/config/RequestBodyParamConfigurer.java)
