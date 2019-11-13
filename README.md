@@ -26,7 +26,7 @@ If your application is build in maven, just add the following code in pom.xml.
         <dependency>
           <groupId>com.github.lambdaexpression</groupId>
           <artifactId>request-body-param</artifactId>
-          <version>2.0.1.RELEASE</version>
+          <version>2.0.3.RELEASE</version>
         </dependency>
         ...
     </dependencies>
@@ -158,6 +158,8 @@ request|whether the body param parameter is required. The default is true , an e
 
 Intercept rules for custom @RequestBodyParam by inheriting MultiReadRequestBean
 
+2.0.3.RELEASE Previously, need to add MultiReadRequestBean to support PUT. Now DefaultMultiReadRequestBean supports POST and PUT by default, and in special cases you can define MultiReadRequestBean filter by yourself.
+
 ```
 @Component
 @EnableRequestBodyParam
@@ -276,7 +278,7 @@ public class TestController {
         <dependency>
           <groupId>com.github.lambdaexpression</groupId>
           <artifactId>request-body-param</artifactId>
-          <version>2.0.1.RELEASE</version>
+          <version>2.0.3.RELEASE</version>
         </dependency>
         ...
     </dependencies>
@@ -338,6 +340,8 @@ request|是否必须要 body param 参数。默认为 true ，参数为空时抛
 ### 2.MultiReadRequestBean
 
 通过继承 MultiReadRequestBean 自定义 @RequestBodyParam 的拦截规则
+
+2.0.3.RELEASE 以前需要添加 MultiReadRequestBean 来支持 PUT，现在DefaultMultiReadRequestBean 默认支持 POST 和 PUT，并且特殊情况下可以自行通过定义 MultiReadRequestBean filter
 
 ```
 @Component
